@@ -21,22 +21,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 public class Application {
-	
-	@Bean
-	MessageService mockMessageService(){
-		return new MessageService() {
-			
-			@Override
-			public String getMessage() {
-				return "hello,peter";
-			}
-		};
-	}
-	
-	public static void main(String[] args) {
-		ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-		MessagePrinter printer = context.getBean(MessagePrinter.class);
-		printer.printMessage();
-	}
+
+    @Bean
+    MessageService mockMessageService() {
+        return new MessageService() {
+
+            @Override
+            public String getMessage() {
+                return "hello,peter";
+            }
+        };
+    }
+
+    @SuppressWarnings("resource")
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+        MessagePrinter printer = context.getBean(MessagePrinter.class);
+        printer.printMessage();
+    }
 
 }
